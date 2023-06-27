@@ -54,3 +54,42 @@ body {
 .button-33:disabled:hover {
     cursor: default;
 }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progressGraphContainer {
+    background-color: white;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    transform: scaleY(-1);
+    border: black 3px solid;
+}
+
+.xpByTaskContainer {
+    background-color: white;
+    min-width: 700px;
+    padding-left: 10px;
+    border: black 3px solid;
+    position: relative;
+}
+
+.xpByTaskInnerContainer {
+    position: relative;
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.xpByTaskGraphContainer {
+    flex: 1;
+    overflow-y: scroll;
+    width: 700px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+}
