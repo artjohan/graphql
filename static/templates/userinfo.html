@@ -8,7 +8,32 @@
     <title>GraphQL</title>
 </head>
 <body>
-    <div style="height: 400px; background-color: red; width: 100%;"></div>
+    <div style="display: flex; justify-content: center; min-width: 1422px;">
+        <div class="auditData">
+            <h1>Audit information</h1><br>
+            <a style="font-weight: bold; font-size: 20px;">AUDIT RATIO</a><br>
+            <a id="auditRatio"></a><br><br>
+            <a style="font-weight: bold; font-size: 20px;">AUDIT XP DONE ⬆</a><br>
+            <a id="auditsDone"></a><br><br>
+            <a style="font-weight: bold; font-size: 20px;">AUDIT XP RECEIVED ⬇</a><br>
+            <a id="auditsReceived"></a><br><br>
+        </div>
+        <div class="userData">
+            <h1 id="username"></h1><br>
+            <a style="font-weight: bold; font-size: 20px;">FULL NAME</a><br>
+            <a id="firstName"></a>
+            <a id="lastName"></a><br><br>
+            <a style="font-weight: bold; font-size: 20px;">LOCATION</a><br>
+            <a id="location"></a><br><br>
+            <a style="font-weight: bold; font-size: 20px;">AGE</a><br>
+            <a id="age"></a><br><br>
+        </div>
+        <div class="xpDataAndLogout">
+            <h1>Total XP</h1><br><br><br>
+            <a style="font-weight: bold; font-size: 40px;" id="xp"></a><br><br><br><br><br>
+            <button id="logoutBtn" class="button-33">Log out</button>
+        </div>
+    </div>
     <div class="container">
         <div id="progressGraphContainer" class="progressGraphContainer"></div>
         <div id="xpByTaskContainer" class="xpByTaskContainer">

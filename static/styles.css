@@ -1,6 +1,7 @@
 body {
     background-color: rgb(174, 192, 192);
     font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    visibility: hidden;
 }
 
 .header {
@@ -35,6 +36,7 @@ body {
     text-align: center;
     text-decoration: none;
     border: 0;
+    transition: all .2s ease-in-out;
     font-size: 16px;
     user-select: none;
     -webkit-user-select: none;
@@ -58,22 +60,25 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
+    margin-top: 50px;
 }
 
 .progressGraphContainer {
-    background-color: white;
+    background-color: rgb(227, 249, 255);
     padding: 10px;
     width: fit-content;
     height: fit-content;
     transform: scaleY(-1);
-    border: black 3px solid;
+    border: rgb(108, 153, 250) 3px solid;
+    border-radius: 10px;
 }
 
 .xpByTaskContainer {
-    background-color: white;
+    background-color: rgb(227, 249, 255);
+    border-radius: 10px;
     min-width: 700px;
     padding-left: 10px;
-    border: black 3px solid;
+    border: rgb(108, 153, 250) 3px solid;
     position: relative;
 }
 
@@ -92,4 +97,36 @@ body {
     height: 400px;
     position: absolute;
     top: 0;
+}
+
+.userData {
+    height: 350px;
+    background-color: rgb(227, 249, 255);
+    width: 25%;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
+    border: rgb(108, 153, 250) 3px solid;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.auditData {
+    height: 350px;
+    background-color: rgb(227, 249, 255);
+    width: 25%;
+    margin-top: 50px;
+    border: rgb(108, 153, 250) 3px solid;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.xpDataAndLogout {
+    height: 350px;
+    background-color: rgb(227, 249, 255);
+    width: 25%;
+    margin-top: 50px;
+    border: rgb(108, 153, 250) 3px solid;
+    border-radius: 10px;
+    text-align: center;
 }
