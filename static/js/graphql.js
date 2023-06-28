@@ -125,6 +125,7 @@ const getUserProgress = async (userToken) => {
     return results.data.transaction
 }
 
+// function used to send graphql queries
 const getQueryResults = async (queryBody, userToken) => {
     const url = "https://01.kood.tech/api/graphql-engine/v1/graphql"
 

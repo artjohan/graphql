@@ -3,14 +3,15 @@ export const createProgressGraph = (transactions, totalXp) => {
   
     const dates = transactions.map(transaction => new Date(transaction.createdAt))
     const earliestDate = new Date(Math.min(...dates))
-    earliestDate.setDate(1)
+    earliestDate.setDate(1) // set earliestdate to the first of the first transaction month
 
     const currentDate = new Date()
-    if (currentDate.getDate() !== 1) {
+    if (currentDate.getDate() !== 1) { // set currentdate to the first of the next month, that way the months comparison lines are consistent
         currentDate.setMonth(currentDate.getMonth() + 1)
         currentDate.setDate(1)
     }
   
+    // add the baseline to the beginning of the transactions array
     transactions.unshift({
         amount: 0,
         createdAt: Math.min(...dates),
@@ -33,9 +34,9 @@ export const createProgressGraph = (transactions, totalXp) => {
         }
     })
   
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-    svg.setAttribute('width', graphWidth)
-    svg.setAttribute('height', graphHeight + yPadding * 2)
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+    svg.setAttribute("width", graphWidth)
+    svg.setAttribute("height", graphHeight + yPadding * 2)
 
     const title = document.createElementNS("http://www.w3.org/2000/svg", "text")
     title.setAttribute("x", "50%")
@@ -54,43 +55,44 @@ export const createProgressGraph = (transactions, totalXp) => {
     for (let i = 0; i < backgroundLineHorizontalDistance; i++) {
         const y = i * backgroundLineHorizontalIncrement + yPadding
         
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-        line.setAttribute('x1', xPadding)
-        line.setAttribute('y1', y)
-        line.setAttribute('x2', graphWidth - xPadding)
-        line.setAttribute('y2', y)
-        line.setAttribute('stroke', 'lightgray')
-        line.setAttribute('stroke-dasharray', '2')
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
+        line.setAttribute("x1", xPadding)
+        line.setAttribute("y1", y)
+        line.setAttribute("x2", graphWidth - xPadding)
+        line.setAttribute("y2", y)
+        line.setAttribute("stroke", "lightgray")
+        line.setAttribute("stroke-dasharray", "2")
         svg.appendChild(line)
         
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
-        text.setAttribute('x', 0)
-        text.setAttribute('y', y)
-        text.setAttribute('fill', 'black')
-        text.setAttribute('font-size', '12')
-        text.setAttribute('transform', `rotate(180 0 ${y}) scale(-1, 1)`)
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text")
+        text.setAttribute("x", 0)
+        text.setAttribute("y", y)
+        text.setAttribute("fill", "black")
+        text.setAttribute("font-size", "12")
+        text.setAttribute("transform", `rotate(180 0 ${y}) scale(-1, 1)`)
         text.textContent = i * graphHeightIncrements + " kB"
         svg.appendChild(text)
     }
   
     const monthMap = new Map([
-        [0, 'Jan'],
-        [1, 'Feb'],
-        [2, 'Mar'],
-        [3, 'Apr'],
-        [4, 'May'],
-        [5, 'Jun'],
-        [6, 'Jul'],
-        [7, 'Aug'],
-        [8, 'Sep'],
-        [9, 'Oct'],
-        [10, 'Nov'],
-        [11, 'Dec'],
+        [0, "Jan"],
+        [1, "Feb"],
+        [2, "Mar"],
+        [3, "Apr"],
+        [4, "May"],
+        [5, "Jun"],
+        [6, "Jul"],
+        [7, "Aug"],
+        [8, "Sep"],
+        [9, "Oct"],
+        [10, "Nov"],
+        [11, "Dec"],
     ])
   
     let bigTimeInterval = false
     let monthsDifference = calculateMonthsDifference(earliestDate, currentDate)
   
+    // if the time period is longer than a year, make it so the background lines for time are at every 3 months instead of every month in order to save space
     if (monthsDifference >= 12) {
         bigTimeInterval = true
         for (let i = monthsDifference; i % 3 !== 0; i++) {
@@ -111,21 +113,21 @@ export const createProgressGraph = (transactions, totalXp) => {
         }
         const x = i * backgroundLineVerticalIncrement + xPadding
       
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-        line.setAttribute('x1', x)
-        line.setAttribute('y1', yPadding)
-        line.setAttribute('x2', x)
-        line.setAttribute('y2', graphHeight + yPadding)
-        line.setAttribute('stroke', 'lightgray')
-        line.setAttribute('stroke-dasharray', '2')
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
+        line.setAttribute("x1", x)
+        line.setAttribute("y1", yPadding)
+        line.setAttribute("x2", x)
+        line.setAttribute("y2", graphHeight + yPadding)
+        line.setAttribute("stroke", "lightgray")
+        line.setAttribute("stroke-dasharray", "2")
         svg.appendChild(line)
       
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
-        text.setAttribute('x', x - 5)
-        text.setAttribute('y', 5)
-        text.setAttribute('fill', 'black')
-        text.setAttribute('font-size', '12')
-        text.setAttribute('transform', `rotate(180 0 5) scale(-1, 1)`)
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text")
+        text.setAttribute("x", x - 5)
+        text.setAttribute("y", 5)
+        text.setAttribute("fill", "black")
+        text.setAttribute("font-size", "12")
+        text.setAttribute("transform", `rotate(180 0 5) scale(-1, 1)`)
         text.textContent = `${monthMap.get(startMonth)} ${startYear}`
         svg.appendChild(text)
       
@@ -133,31 +135,31 @@ export const createProgressGraph = (transactions, totalXp) => {
     }
   
     for (const data of graphData) {
-        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
-        circle.setAttribute('cx', data.x)
-        circle.setAttribute('cy', data.y)
-        circle.setAttribute('r', '3')
-        circle.setAttribute('fill', 'black')
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+        circle.setAttribute("cx", data.x)
+        circle.setAttribute("cy", data.y)
+        circle.setAttribute("r", "3")
+        circle.setAttribute("fill", "black")
         svg.appendChild(circle)
     }
   
     for (let i = 1; i < graphData.length; i++) {
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-        line.setAttribute('x1', graphData[i - 1].x)
-        line.setAttribute('y1', graphData[i - 1].y)
-        line.setAttribute('x2', graphData[i].x)
-        line.setAttribute('y2', graphData[i].y)
-        line.setAttribute('stroke', 'black')
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
+        line.setAttribute("x1", graphData[i - 1].x)
+        line.setAttribute("y1", graphData[i - 1].y)
+        line.setAttribute("x2", graphData[i].x)
+        line.setAttribute("y2", graphData[i].y)
+        line.setAttribute("stroke", "black")
         svg.appendChild(line)
     }
   
-    document.getElementById('progressGraphContainer').innerHTML = ''
-    document.getElementById('progressGraphContainer').appendChild(svg)
+    document.getElementById("progressGraphContainer").innerHTML = ""
+    document.getElementById("progressGraphContainer").appendChild(svg)
 }
 
 export const createXpByProjectGraph = (data) => {
-    const barGraph = document.getElementById('barGraph')
-    const comparisonChart = document.getElementById('comparisonGraph')
+    const barGraph = document.getElementById("barGraph")
+    const comparisonChart = document.getElementById("comparisonGraph")
 
     const barHeight = 30
     const barGap = 15
@@ -184,6 +186,7 @@ export const createXpByProjectGraph = (data) => {
     title.textContent = "XP earned by project"
     barGraph.appendChild(title)
 
+    // creating comparison notches
     for (let i = 0; i <= notchCount; i++) {
         const notchX = i * notchWidth + xPadding
         
