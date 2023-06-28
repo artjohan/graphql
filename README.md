@@ -18,13 +18,13 @@ Ex. `go run . 5000`
 
 To use the website, log in with your 01 Intra credentials. The credentials will not be stored.
 
-After logging in, you will be redirected to a page with your user information and 2 graphs.
+After logging in, you will be directed to a page with your user information and 2 graphs based on your statistics.
 
 # Testing
 
 [Here](https://github.com/01-edu/public/tree/master/subjects/graphql/audit) are the audit questions to test the program.
 
-If there are any issues or you run into any glitches, feel free to contact me on discord.
+If there are any issues, feel free to contact me on discord.
 
 # Implementation
 
