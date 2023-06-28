@@ -23,7 +23,7 @@ func main() {
 }
 
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
-	temp, err := template.ParseFiles("./static/templates/index.html")
+	temp, err := template.ParseFiles("./index.html")
 	if err != nil {
 		http.Redirect(w, r, "/", http.StatusInternalServerError)
 		return
@@ -35,7 +35,7 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserInfoHandler(w http.ResponseWriter, r *http.Request) {
-	temp, err := template.ParseFiles("./static/templates/userinfo.html")
+	temp, err := template.ParseFiles("./userinfo.html")
 	if err != nil {
 		http.Redirect(w, r, "/", http.StatusInternalServerError)
 		return
