@@ -1,7 +1,7 @@
 const addLoginFunctionality = () => {
     const userToken = sessionStorage.getItem("currentSession")
     if(userToken) {
-        window.location.href = "/user-info"
+        window.location.href = "/graphql"
     } else {
         const loginForm = document.getElementById("loginForm")
         const usernameOrEmail = document.getElementById("usernameOrEmail")
@@ -72,7 +72,7 @@ const handleLoginResponse = async (response) => {
     if(response.ok) {
         const result = await response.json()
         sessionStorage.setItem("currentSession", result)
-        window.location.href = "/user-info" 
+        window.location.href = "/graphql" 
     } else {
         document.getElementById("password-error").innerHTML = "Login credentials invalid, please try again"
     }

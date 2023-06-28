@@ -13,7 +13,7 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./static/"))
 	http.Handle("/static/", http.StripPrefix("/static", fileServer))
 	http.HandleFunc("/", HomePageHandler)
-	http.HandleFunc("/user-info", UserInfoHandler)
+	http.HandleFunc("/graphql", GraphQLHandler)
 	portNr := getPortNr()
 	fmt.Printf("Started server at http://localhost:%v\n", portNr)
 	// runs server
@@ -23,7 +23,7 @@ func main() {
 }
 
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
-	temp, err := template.ParseFiles("./index.html")
+	temp, err := template.ParseFiles("index.html")
 	if err != nil {
 		http.Redirect(w, r, "/", http.StatusInternalServerError)
 		return
@@ -34,8 +34,8 @@ func HomePageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func UserInfoHandler(w http.ResponseWriter, r *http.Request) {
-	temp, err := template.ParseFiles("./userinfo.html")
+func GraphQLHandler(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseFiles("graphql.html")
 	if err != nil {
 		http.Redirect(w, r, "/", http.StatusInternalServerError)
 		return
